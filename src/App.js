@@ -1,23 +1,43 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
 
 function App() {
+  let [currentValue, setCurrentValue] = useState(0);
+  let [inputValue, setInputValue] = useState(0);
+  
+  const handleAdd = () => setCurrentValue(currentValue + inputValue);
+  const handleSubtract = () => setCurrentValue(currentValue - inputValue);
+  const handleMultiply = () => setCurrentValue(currentValue * inputValue);
+  const handleDivide = () => {
+    if (inputValue !== 0) {
+      setCurrentValue(currentValue / inputValue);
+    } else {
+      alert("Cannot divide by zero");
+    }
+  };
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+        <h1>Calculator by React</h1>
+        <img id='logo' src={logo} className="App-logo" alt="logo" />
       </header>
+      <main>
+        <div id='currentValue'>{currentValue}</div>
+        <input type='number'
+          value={inputValue}
+          onChange={e => setInputValue(Number(e.target.value))}
+        />
+        <button onClick={handleAdd}>+</button>
+        <button onClick={handleSubtract}>-</button>
+        <button onClick={handleMultiply}>*</button>
+        <button onClick={handleDivide}>/</button>
+        <button>=</button>
+        <button onClick={() => setCurrentValue(0)}>Clear</button>
+      </main>
+        
     </div>
   );
 }
