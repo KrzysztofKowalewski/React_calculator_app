@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 function App() {
   let [currentValue, setCurrentValue] = useState(0);
-  let [inputValue, setInputValue] = useState(0);
+  let [inputValue, setInputValue] = useState('');
   
   const handleAdd = () => setCurrentValue(currentValue + inputValue);
   const handleSubtract = () => setCurrentValue(currentValue - inputValue);
@@ -24,8 +24,8 @@ function App() {
         <h1>Calculator by React</h1>
         <img id='logo' src={logo} className="App-logo" alt="logo" />
       </header>
+      <div id='currentValue'>{currentValue}</div>
       <main>
-        <div id='currentValue'>{currentValue}</div>
         <input type='number'
           value={inputValue}
           onChange={e => setInputValue(Number(e.target.value))}
@@ -34,7 +34,6 @@ function App() {
         <button onClick={handleSubtract}>-</button>
         <button onClick={handleMultiply}>*</button>
         <button onClick={handleDivide}>/</button>
-        <button>=</button>
         <button onClick={() => setCurrentValue(0)}>Clear</button>
       </main>
         
